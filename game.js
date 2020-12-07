@@ -10,7 +10,7 @@ class GameScene extends Phaser.scene {
   upload(){
     this.load.image('cave', 'https://content.codecademy.com/courses/learn-phaser/Cave%20Crisis/cave_background.png');
     this.load.image('platform', 'https://content.codecademy.com/courses/learn-phaser/Cave%20Crisis/platform.png');
-    this.upload.spritesheet()
+    this.load.spritesheet('codey','https://content.codecademy.com/courses/learn-phaser/Cave%20Crisis/codey_sprite.png',{frameWidth:72,frameHeight:90})
   }
   create() {
     // gameState.active is true if the game is playble (not game over)
