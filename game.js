@@ -38,10 +38,35 @@ class GameScene extends Phaser.scene {
       frameRate:5,
       repeat:-1
 
-    })  
+    })
+    this.anims.create({
+      key:'idle',
+      frames: this.anims.generateFrameNumbers('codey',{start:4,end:5}),
+      frameRate:5,
+      repeat:-1
+    })
+    gameState.cursors = this.input.keyboard.createCursorKeys()  
   }
 
   update() {
+    if(gameState.active){
+      if(gameState.cursors.right.isDown){
+        gameState.player.setVelocityX(350)
+        gameState.player.anims.play('run',true);
+
+        gameState.player.flipX = false;
+      }else if (gameState.cursors.left.isDown) {
+        gameState.player.setVelocityX(-350);
+        gameState.player.anims.play('run', true);
+        
+				gameState.player.flipX = true;
+        
+      } else {
+        gameState.player.setVelocityX(0);
+        // Plays the idle animation if no arrow keys are pressed
+        gameState.player.anims.play('idle', true);
+      }
+    }
     
   }
 }
