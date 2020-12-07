@@ -95,8 +95,10 @@ class GameScene extends Phaser.scene {
       ease: 'Linear',
       duration: 1800,
       repeat: -1,
-      yoyo: true
+      yoyo: true,
+      //onRepeat:growSnowman
     });
+    
   }
 
   update() {
