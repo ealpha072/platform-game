@@ -10,6 +10,8 @@ class GameScene extends Phaser.scene {
   upload(){
     this.load.image('cave', 'https://content.codecademy.com/courses/learn-phaser/Cave%20Crisis/cave_background.png');
     this.load.image('platform', 'https://content.codecademy.com/courses/learn-phaser/Cave%20Crisis/platform.png');
+    // Loads exit sprite sheet 
+    this.load.spritesheet('exit', 'https://content.codecademy.com/courses/learn-phaser/Cave%20Crisis/cave_exit.png', { frameWidth: 60, frameHeight: 70 });
     this.load.spritesheet('snowman', 'https://content.codecademy.com/courses/learn-phaser/Cave%20Crisis/snowman.png', { frameWidth: 50, frameHeight: 70 });
     this.load.spritesheet('codey','https://content.codecademy.com/courses/learn-phaser/Cave%20Crisis/codey_sprite.png',{frameWidth:72,frameHeight:90})
   }
@@ -56,7 +58,13 @@ class GameScene extends Phaser.scene {
     })
     gameState.enemy.anims.play('snowmanAlert',true)
     this.physics.add.overlap(gameState.player,gameState.enemy,()=>{
+      this.add.text(150, 50, '      Game Over...\n  Click to play again.', { fontFamily: 'Arial', fontSize: 36, color: '#ffffff' });
+      this.physics.pause();
+      gameState.active = false;
       this.anims.pauseAll();
+      this.input.on('pointerup',()=>{
+        this.scene.restart();
+      })
     })
   }
 
