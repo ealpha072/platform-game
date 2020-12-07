@@ -27,7 +27,18 @@ class GameScene extends Phaser.scene {
     ];
     platPositions.forEach(plat => {
       platforms.create(plat.x, plat.y, 'platform');
-    });    
+    });  
+    //creating codey and movements
+    gameState.player  =this.physics.add.sprite(200,500,'codey');
+    this.anims.create({
+      key:'run',
+      frames:this.anims.generateFrameNumbers('codey',{
+        start:0,end:3
+      }),
+      frameRate:5,
+      repeat:-1
+
+    })  
   }
 
   update() {
