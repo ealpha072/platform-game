@@ -66,6 +66,23 @@ class GameScene extends Phaser.scene {
         this.scene.restart();
       })
     })
+    gameState.exit = this.physics.add.sprite(50,142,'exit');
+    this.anims.create({
+      key:'glow',
+      frames:this.anims.generateFrameNumbers('exit',{start:0,end:4}),
+      frameRate:4,
+      repeat:-1
+    })
+    this.physics.add.collider(gameState.exit,gameState.platforms)
+    gameState.exit.anims.play('glow',true);
+
+    //win condition
+    this.physics.add.overlap(gameState.player,gameState.exit,()=>{
+      this.add.text(150, 50, 'You reached the exit!\n  Click to play again.', { fontFamily: 'Arial', fontSize: 36, color: '#ffffff' });
+      this.physics.pause();
+      gameState.active = false;
+      this.anims.pauseAll()
+    })
   }
 
   update() {
