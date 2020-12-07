@@ -82,7 +82,21 @@ class GameScene extends Phaser.scene {
       this.physics.pause();
       gameState.active = false;
       this.anims.pauseAll()
+      gameState.enemy.move.stop();
+      this.input.on('pointerup',()=>{
+        this.anims.resumeAll();
+        this.scene.restart()
+      })
     })
+    //creating tweens 
+    gameState.enemy.move = this.tweens.add({
+      targets: gameState.enemy,
+      x: 320,
+      ease: 'Linear',
+      duration: 1800,
+      repeat: -1,
+      yoyo: true
+    });
   }
 
   update() {
