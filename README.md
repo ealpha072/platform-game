@@ -1,3 +1,3 @@
-# platform-game
+# Platform-game
 ## To do 
-  * Add more levels with different anims
+  * Add more levels with different anims usign phaser 
